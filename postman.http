@@ -1,0 +1,149 @@
+@BASE_URL = http://127.0.0.1:7001/api
+@token = {{loginAdmin.response.body.data.token}}
+
+### 用户注册
+POST {{BASE_URL}}/user/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "admin5",
+  "password": "admin5"
+}
+
+### 用户登录  
+# @name  loginAdmin
+POST {{BASE_URL}}/user/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "admin1", 
+  "password": "admin1"
+}
+
+### 用户详情
+POST {{BASE_URL}}/user/detail HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+  "id": 1
+}
+
+### 用户编辑
+POST {{BASE_URL}}/user/edit HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+  "avatar":"",
+  "phone": "123124123",
+  "sign": "admin10"
+}
+
+
+### 用户退出
+POST {{BASE_URL}}/user/logout HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+### 城市列表
+POST {{BASE_URL}}/commons/citys HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+### 热门民宿
+POST {{BASE_URL}}/house/hot HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+### 搜索
+POST {{BASE_URL}}/house/search HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+"code": "10001",
+"endTime": "2023-01-11 23:59:59",
+"houseName": "",
+"pageNum": 1,
+"pageSize": 8,
+"startTime": "2023-01-04 00:00:00"
+}
+
+
+### 民宿详情
+POST {{BASE_URL}}/house/detail HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+  "id": 1
+} 
+
+
+### 民宿评论
+POST {{BASE_URL}}/comment/add HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+  "comment": "评论内容",
+  "houseId": "1"
+}
+
+
+### 民宿评论列表
+POST {{BASE_URL}}/comment/lists HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+  "houseId": "1",
+  "pageNum": 1,
+  "pageSize": 10
+}
+
+### 名宿是否预定
+POST {{BASE_URL}}/orders/hasOrder HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+  "id": "1"
+}
+
+### 预定民宿
+POST {{BASE_URL}}/orders/addOrder HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{"id": "2"}
+
+
+### 取消预定
+POST {{BASE_URL}}/orders/delOrder HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{"id": "2"}
+
+
+### 订单列表
+POST {{BASE_URL}}/orders/lists HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+  "isPayed": 0,
+  "pageNum": 1,
+  "pageSize": 10
+}
+
+### 支付订单
+POST {{BASE_URL}}/orders/pay HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{"id": 10}
+
+
